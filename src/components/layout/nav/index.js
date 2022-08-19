@@ -29,7 +29,7 @@ export default function Nav() {
 				</Button>
 			</ul>
 			<section className={classes.info}>
-				<h1 className={classes.greeting}>Welcome to Ian's Coffee</h1>
+				<h1 className={classes.greeting}>Welcome to Ian &#39;s Coffee</h1>
 			</section>
 		</nav>
 	);
