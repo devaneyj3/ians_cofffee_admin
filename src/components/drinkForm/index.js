@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import classes from "./drinkForm.module.scss";
 import { Button } from "reactstrap";
-import CustomInputs from "../../../shared/CustomInput";
+import CustomInputs from "../CustomInput";
 
 import { useDrinkContext } from "../../contexts/DrinkContext";
 

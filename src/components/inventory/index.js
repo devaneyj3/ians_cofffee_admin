@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Table } from "reactstrap";
 
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import CustomModal from "../../../shared/CustomModal";
-import CustomInputs from "../../../shared/CustomInput";
+import CustomModal from "../CustomModal";
+import CustomInputs from "../CustomInput";
 
 export default function Inventory({ drinks }) {
 	const [selectedDrink, setSelectedDrink] = useState("");

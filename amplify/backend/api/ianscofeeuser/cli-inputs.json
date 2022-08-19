@@ -1,18 +1,22 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "ianscoffeeadmin",
+    "apiName": "ianscofeeuser",
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 355,
-      "apiKeyExpirationDate": "2023-08-09T03:23:08.586Z",
-      "keyDescription": ""
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
-    }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }

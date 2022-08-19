@@ -1,6 +1,6 @@
 {
   "api": {
-    "ianscoffeeadmin": {
+    "ianscofeeuser": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -9,18 +9,21 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 355,
-              "apiKeyExpirationDate": "2023-08-09T03:23:08.586Z",
-              "description": ""
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }
   },
   "auth": {
-    "ianscoffeeadmin6582d4e0": {
+    "ianscofeeuserd998c65d": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -47,13 +50,6 @@
           "EMAIL"
         ]
       }
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2022-08-19T03:28:47.149Z"
     }
   }
 }

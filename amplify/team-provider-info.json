@@ -1,25 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-ianscoffeeadmin-dev-232108-authRole",
-      "UnauthRoleArn": "arn:aws:iam::516584575912:role/amplify-ianscoffeeadmin-dev-232108-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::516584575912:role/amplify-ianscoffeeadmin-dev-232108-authRole",
+      "AuthRoleName": "amplify-ianscofeeuser-dev-133711-authRole",
+      "UnauthRoleArn": "arn:aws:iam::516584575912:role/amplify-ianscofeeuser-dev-133711-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::516584575912:role/amplify-ianscofeeuser-dev-133711-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-ianscoffeeadmin-dev-232108-deployment",
-      "UnauthRoleName": "amplify-ianscoffeeadmin-dev-232108-unauthRole",
-      "StackName": "amplify-ianscoffeeadmin-dev-232108",
-      "StackId": "arn:aws:cloudformation:us-east-1:516584575912:stack/amplify-ianscoffeeadmin-dev-232108/f87e0c60-1f6d-11ed-9cdb-0e6ca049a619",
-      "AmplifyAppId": "d3c94vyy80ambm"
+      "DeploymentBucketName": "amplify-ianscofeeuser-dev-133711-deployment",
+      "UnauthRoleName": "amplify-ianscofeeuser-dev-133711-unauthRole",
+      "StackName": "amplify-ianscofeeuser-dev-133711",
+      "StackId": "arn:aws:cloudformation:us-east-1:516584575912:stack/amplify-ianscofeeuser-dev-133711/8f385940-1fe5-11ed-8940-12608cfa8899",
+      "AmplifyAppId": "d7enprm9hb9qf"
     },
     "categories": {
       "auth": {
-        "ianscoffeeadmin6582d4e0": {}
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d3c94vyy80ambm",
-          "type": "cicd"
-        }
+        "ianscofeeuserd998c65d": {}
       }
     }
   }
