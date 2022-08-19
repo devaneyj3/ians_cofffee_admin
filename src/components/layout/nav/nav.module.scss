@@ -1,0 +1,31 @@
+.nav_container {
+	.nav {
+		height: 200px;
+		align-items: flex-end;
+		padding-bottom: 20px;
+		display: flex;
+		justify-content: space-around;
+	}
+	.video {
+		top: 0px;
+		left: 0px;
+		position: absolute;
+		z-index: -1;
+		height: 275px;
+		width: 100%;
+		object-fit: cover;
+	}
+	.greeting {
+		color: white;
+	}
+	a {
+		cursor: pointer;
+	}
+	.info {
+		display: flex;
+		justify-content: space-around;
+		.btn {
+			justify-self: flex-end;
+		}
+	}
+}
