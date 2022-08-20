@@ -97,6 +97,7 @@ export declare class User {
   readonly Carts?: (Cart | null)[] | null;
   readonly Orders?: (Order | null)[] | null;
   readonly sub: string;
+  readonly name: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);

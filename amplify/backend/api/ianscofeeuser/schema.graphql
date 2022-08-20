@@ -47,5 +47,6 @@ type User @model @auth(rules: [{allow: public}]) {
   Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
   sub: String!
+  name: String!
 }
  
