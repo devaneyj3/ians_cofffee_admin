@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { DataStore } from "@aws-amplify/datastore";
-import { Drink } from "../models";
+import { Drink, CartItem } from "../models";
 
 const DrinkContext = createContext();
 
@@ -47,7 +47,17 @@ export const DrinkContextProvider = ({ children }) => {
 		);
 	};
 
-	const removeDrink = (id) => {
+	const removeDrink = async (id) => {
+		//fetch the cartItem from the datastore
+		const models = await DataStore.query(CartItem);
+		//filter out the cartItems that have the drink id
+		const idExists = models.filter((model) => model.drinkID === id);
+		await DataStore.query(Drink, id);
+		//delete the cartItem of user has it in the cart
+		if (idExists.length > 0) {
+			await DataStore.delete(CartItem, (c) => c.drinkID("eq", id));
+		}
+
 		//remove the drink from the datastore
 		DataStore.delete(Drink, id);
 		//remove the drink from the state

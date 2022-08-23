@@ -10,6 +10,7 @@ import Layout from "../src/components/layout";
 import "../public/styles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DrinkContextProvider } from "../src/contexts/DrinkContext";
+import { OrderContextProvider } from "../src/contexts/OrderContext";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -19,9 +20,11 @@ function MyApp({ Component, pageProps }) {
 			variation="modal"
 			signUpAttributes={["email", "phone_number", "name"]}>
 			<DrinkContextProvider>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<OrderContextProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</OrderContextProvider>
 			</DrinkContextProvider>
 		</Authenticator>
 	);

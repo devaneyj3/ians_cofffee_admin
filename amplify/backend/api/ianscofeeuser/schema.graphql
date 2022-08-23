@@ -1,7 +1,15 @@
+type Cart @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  CartItems: [CartItem] @hasMany(indexName: "byCart", fields: ["id"])
+  userID: String!
+}
+
 type OrderDrink @model @auth(rules: [{allow: public}]) {
   id: ID!
-  Drink: Drink @hasOne
   orderID: ID! @index(name: "byOrder")
+  drinkID: String!
+  quantity: Int!
+  totalDrinkPrice: Float!
 }
 
 enum OrderStatus {
@@ -19,17 +27,12 @@ type Order @model @auth(rules: [{allow: public}]) {
   OrderDrinks: [OrderDrink] @hasMany(indexName: "byOrder", fields: ["id"])
 }
 
-type Cart @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  CartItems: [CartItem] @hasMany(indexName: "byCart", fields: ["id"])
-  userID: ID! @index(name: "byUser")
-}
-
 type CartItem @model @auth(rules: [{allow: public}]) {
   id: ID!
   quantity: Int!
-  Drink: Drink @hasOne
   cartID: ID! @index(name: "byCart")
+  drinkID: String!
+  totalDrinkPrice: Float!
 }
 
 type Drink @model @auth(rules: [{allow: public}]) {
@@ -44,9 +47,9 @@ type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   email: String!
   phone: String!
-  Carts: [Cart] @hasMany(indexName: "byUser", fields: ["id"])
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
   sub: String!
   name: String!
+  Cart: Cart @hasOne
 }
  

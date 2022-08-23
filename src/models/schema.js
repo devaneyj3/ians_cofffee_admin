@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "OrderDrink": {
-            "name": "OrderDrink",
+        "Cart": {
+            "name": "Cart",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,24 +10,24 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Drink": {
-                    "name": "Drink",
-                    "isArray": false,
+                "CartItems": {
+                    "name": "CartItems",
+                    "isArray": true,
                     "type": {
-                        "model": "Drink"
+                        "model": "CartItem"
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "orderDrinkDrinkId"
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "cartID"
                     }
                 },
-                "orderID": {
-                    "name": "orderID",
+                "userID": {
+                    "name": "userID",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -46,30 +46,14 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "orderDrinkDrinkId": {
-                    "name": "orderDrinkDrinkId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "OrderDrinks",
+            "pluralName": "Carts",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byOrder",
-                        "fields": [
-                            "orderID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -89,8 +73,8 @@ export const schema = {
                 }
             ]
         },
-        "Drink": {
-            "name": "Drink",
+        "CartItem": {
+            "name": "CartItem",
             "fields": {
                 "id": {
                     "name": "id",
@@ -99,29 +83,29 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "quantity": {
+                    "name": "quantity",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "cartID": {
+                    "name": "cartID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "drinkID": {
+                    "name": "drinkID",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "image": {
-                    "name": "image",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "price": {
-                    "name": "price",
+                "totalDrinkPrice": {
+                    "name": "totalDrinkPrice",
                     "isArray": false,
                     "type": "Float",
                     "isRequired": true,
@@ -145,11 +129,109 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Drinks",
+            "pluralName": "CartItems",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byCart",
+                        "fields": [
+                            "cartID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "OrderDrink": {
+            "name": "OrderDrink",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "orderID": {
+                    "name": "orderID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "drinkID": {
+                    "name": "drinkID",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "quantity": {
+                    "name": "quantity",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "totalDrinkPrice": {
+                    "name": "totalDrinkPrice",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "OrderDrinks",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byOrder",
+                        "fields": [
+                            "orderID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -267,8 +349,8 @@ export const schema = {
                 }
             ]
         },
-        "Cart": {
-            "name": "Cart",
+        "Drink": {
+            "name": "Drink",
             "fields": {
                 "id": {
                     "name": "id",
@@ -277,24 +359,31 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "CartItems": {
-                    "name": "CartItems",
-                    "isArray": true,
-                    "type": {
-                        "model": "CartItem"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "cartID"
-                    }
-                },
-                "userID": {
-                    "name": "userID",
+                "name": {
+                    "name": "name",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "price": {
+                    "name": "price",
+                    "isArray": false,
+                    "type": "Float",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -316,116 +405,11 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Carts",
+            "pluralName": "Drinks",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byUser",
-                        "fields": [
-                            "userID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "CartItem": {
-            "name": "CartItem",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "quantity": {
-                    "name": "quantity",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Drink": {
-                    "name": "Drink",
-                    "isArray": false,
-                    "type": {
-                        "model": "Drink"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "cartItemDrinkId"
-                    }
-                },
-                "cartID": {
-                    "name": "cartID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "cartItemDrinkId": {
-                    "name": "cartItemDrinkId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "CartItems",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byCart",
-                        "fields": [
-                            "cartID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -469,20 +453,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Carts": {
-                    "name": "Carts",
-                    "isArray": true,
-                    "type": {
-                        "model": "Cart"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "userID"
-                    }
-                },
                 "Orders": {
                     "name": "Orders",
                     "isArray": true,
@@ -511,6 +481,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "Cart": {
+                    "name": "Cart",
+                    "isArray": false,
+                    "type": {
+                        "model": "Cart"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "userCartId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -526,6 +510,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "userCartId": {
+                    "name": "userCartId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -566,5 +557,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "89596cf57b5454e5f2a5ff4356d6a163"
+    "version": "c811a72d7bb3100ccacf010c11261789"
 };

@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
+import { useDrinkContext } from "../../contexts/DrinkContext";
+
 export default function CustomModal({ selectedDrink, modal, toggle }) {
 	const { removeDrink } = useDrinkContext();
 	const deleteInfo = async (drinkId) => {

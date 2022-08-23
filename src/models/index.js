@@ -9,14 +9,14 @@ const OrderStatus = {
   "COMPLETED": "COMPLETED"
 };
 
-const { OrderDrink, Drink, Order, Cart, CartItem, User } = initSchema(schema);
+const { Cart, CartItem, OrderDrink, Order, Drink, User } = initSchema(schema);
 
 export {
-  OrderDrink,
-  Drink,
-  Order,
   Cart,
   CartItem,
+  OrderDrink,
+  Order,
+  Drink,
   User,
   OrderStatus
 };
