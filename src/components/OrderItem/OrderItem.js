@@ -14,7 +14,7 @@ export default function OrderItem({ detail }) {
 			setDrink(drink);
 		};
 		getDrink();
-	}, []);
+	}, [detail]);
 
 	return (
 		<div>

@@ -18,7 +18,6 @@ export default function Orders() {
 		};
 		getOrders();
 	}, []);
-	console.log(orders);
 	return (
 		<>
 			{orders.length > 0 ? (

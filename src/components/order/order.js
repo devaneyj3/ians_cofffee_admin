@@ -21,24 +21,24 @@ export default function Order({ id, userID }) {
 			setDetails(orderDetail);
 		};
 		getDrink();
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		//get user name
 		const getUser = async () => {
 			const user = await DataStore.query(User, (c) => c.sub("eq", userID));
-			console.log(user);
 			user.map((u) => {
 				setUser(u);
 			});
 		};
 		getUser();
-	}, []);
+	}, [userID]);
 
 	return (
 		<div>
 			<p>Ordered by {user.name}</p>
-			{details && details.map((detail) => <OrderItem detail={detail} />)}
+			{details &&
+				details.map((detail) => <OrderItem key={detail.id} detail={detail} />)}
 		</div>
 	);
 }
