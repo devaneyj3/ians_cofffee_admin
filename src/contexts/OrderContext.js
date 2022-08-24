@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { DataStore } from "@aws-amplify/datastore";
-import { Order, OrderDrink, Drink } from "../models";
+import { Order, OrderDrink } from "../models";
 
 const OrderContext = createContext();
 
@@ -18,8 +18,19 @@ export const OrderContextProvider = ({ children }) => {
 		return orderDrinks;
 	};
 
+	const changeOrderStatus = async (id, status) => {
+		const original = await DataStore.query(Order, id);
+
+		await DataStore.save(
+			Order.copyOf(original, (item) => {
+				item.status = status;
+			})
+		);
+	};
+
 	return (
-		<OrderContext.Provider value={{ fetchAllOrders, fetchOrder }}>
+		<OrderContext.Provider
+			value={{ fetchAllOrders, fetchOrder, changeOrderStatus }}>
 			{children}
 		</OrderContext.Provider>
 	);

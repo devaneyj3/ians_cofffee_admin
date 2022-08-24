@@ -7,7 +7,7 @@ import { DataStore } from "@aws-amplify/datastore";
 
 import { User } from "../../models";
 
-export default function Order({ id, userID }) {
+export default function Order({ id, userID, status }) {
 	const [details, setDetails] = useState("");
 
 	const [user, setUser] = useState("");
@@ -38,7 +38,9 @@ export default function Order({ id, userID }) {
 		<div>
 			<p>Ordered by {user.name}</p>
 			{details &&
-				details.map((detail) => <OrderItem key={detail.id} detail={detail} />)}
+				details.map((detail) => (
+					<OrderItem key={detail.id} detail={detail} status={status} />
+				))}
 		</div>
 	);
 }

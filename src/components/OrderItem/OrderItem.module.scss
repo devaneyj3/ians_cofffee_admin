@@ -1,4 +1,24 @@
+.order_details {
+	margin-top: 25px;
+}
 .product {
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+}
+
+.btn_container {
+	margin: 10px;
+}
+
+.status_btn {
+	margin: 10px;
+	width: 100%;
+	background-color: grey;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+	&:hover {
+		background-color: #ccc;
+		color: black;
+	}
 }

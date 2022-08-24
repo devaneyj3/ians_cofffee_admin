@@ -16,15 +16,12 @@
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	.order {
 		display: flex;
+		justify-content: center;
 		font-weight: bold;
 		border-bottom: 1px solid #ccc;
 	}
 	p {
+		text-align: center;
 		margin: 5px;
-	}
-
-	.orderInfo {
-		display: flex;
-		justify-content: center;
 	}
 }

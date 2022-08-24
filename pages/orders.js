@@ -45,7 +45,11 @@ export default function Orders() {
 									</section>
 
 									<section className={classes.orderInfo}>
-										<Order id={order.id} userID={order.userID} />
+										<Order
+											id={order.id}
+											userID={order.userID}
+											status={order.status}
+										/>
 									</section>
 								</div>
 							);
